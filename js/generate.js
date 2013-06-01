@@ -13,6 +13,11 @@ var Generate = {
 		}
 	},
 
+
+	bass_sequence: function(scale) {
+		return ['F1', 'G1', 'G#1', 'A#1', 'C1', 'C#1', 'D#1', 'F2', 'G2', 'G#2']
+	},
+
 	majorscale: function() {
 		var seq = [1,3,5,6,8,10,12];
 	},

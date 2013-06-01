@@ -165,7 +165,7 @@ var PatternGenrateView = Parse.View.extend({
 	save: function() {
 		
 		if(!this.validateName()) {	
-			displayError("please enter name");
+			displayError("Please enter name for pattern");
 			return false;
 		}
 

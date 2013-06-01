@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QUnit basic example</title>
+  <link rel="stylesheet" href="css/qunit-1.11.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="js/qunit-1.11.0.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.16.min.js"></script>
+  <script src="js/generate.js"></script>
+  <script>
+	
+
+	test( "test generate bass F minor sequence" , function () {
+		equal( Generate.bass_sequence('F').length, 10, "bass sequence should be 10 in length" );
+		
+		equal( Generate.bass_sequence('F')[0], 'F1', "first note in bass sequence shold be F1" );
+
+		var seq = Generate.bass_sequence('F');
+		var exp =['F1', 'G1', 'G#1', 'A#1', 'C1', 'C#1', 'D#1', 'F2', 'G2', 'G#2'];
+		for(var i = 0, len = seq.length; i < len; i++) {
+			equal(seq[i], exp[i], "bass sequence in position " + i + " should be " + exp[i] + " but is " + seq[i] );
+		}
+	});
+	
+	
+  </script>
+</body>
+</html>
