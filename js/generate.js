@@ -16,7 +16,7 @@ var Generate = {
 
 	bass_sequence: function(scale) {
 		//return ['F1', 'G1', 'G#1', 'A#1', 'C1', 'C#1', 'D#1', 'F2', 'G2', 'G#2']
-		return Generate.minorscale_note(10, 1);
+		return Generate.minorscale_note(10, Generate.note_pos(scale)-1);
 	},
 
 	majorscale: function() {
@@ -25,21 +25,14 @@ var Generate = {
 
 	minorscale_note: function(length, offset) {
 		var result = [];
-		var seq = [1,3,4,6,8,9,11];
-		var seq_counter = 0;
-		var padding = 0;
-		var ocatave = 1;
+		var seq = Generate.minorscale_pos(length);
 		for(var i = 0; i < length; i++) {
 
-			if(seq_counter >= seq.length) {
-				seq_counter = 0;
-				padding = padding + 12;
-				ocatave++;
-			}
-			var pos = seq[seq_counter++]+offset;
-			if(pos > 12)
-				pos = pos - 12;
-			result[i] = Generate.note(pos) + ocatave.toString();
+			var pos = seq[i];
+
+			ocatave = Math.floor((pos+(offset-1)+12) / 12);
+
+			result[i] = Generate.note(pos, offset) + ocatave.toString();
 		}
 		return result;
 	},
@@ -68,7 +61,13 @@ var Generate = {
 		return this.note(seq[pos]) + ocatave.toString();
 	},
 
-	note: function(pos) {
+	note: function(pos, offset) {
+		
+		if(offset) {
+			pos = pos + offset;
+			pos = (pos > 12) ? pos - 12 : pos;
+		}
+
 		switch(pos) {
 			case 1:
 				return 'E' 
@@ -98,4 +97,41 @@ var Generate = {
 				return 'n/a'
 		}
 	},
+
+	note_pos: function(pos, offset) {
+		
+		if(offset) {
+			pos = pos + offset;
+			pos = (pos > 12) ? pos - 12 : pos;
+		}
+
+		switch(pos) {
+			case 'E':
+				return 1; 
+			case 'F':
+				return 2;
+			case 'F#':
+				return 3;
+			case 'G':
+				return 4;
+			case 'G#':
+				return 5;
+			case 'A':
+				return 6;
+			case 'A#':
+				return 7;
+			case 'B':
+				return 8;
+			case 'C':
+				return 9;
+			case 'C#':
+				return 10;
+			case 'D':
+				return 11;
+			case 'D#':
+				return 12;
+			default:
+				return 0
+		}
+	}
 } 
