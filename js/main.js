@@ -184,8 +184,8 @@ var PatternGenrateView = Parse.View.extend({
 		LoadGenerators(this.model, function ( generators ) 
 		{
 			self.model.generators = generators;
-			self.model.generators.each( function( drum ) {
-				var view = new SoundGeneratorView({model: drum});
+			self.model.generators.each( function( pattern ) {
+				var view = new SoundGeneratorView({model: pattern});
 				self.$el.find("#generators").append(view.render().el);
 			});	
 			return false;

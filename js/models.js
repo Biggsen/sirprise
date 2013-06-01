@@ -101,7 +101,6 @@ var LoadSequences = function( generator, options ) {
 		sequences = new Sequences();
 		for(var i = 0; i < 8; i++) {
 			sequences.add([{
-					position: 0,
 					note: '',
 					parent: generator
 				}]);
@@ -146,7 +145,6 @@ var SoundGenerators = Parse.Collection.extend({
 var Sequence = Parse.Object.extend("Sequence", {
 	defaults: {
 		parent: null,
-		position: 1,
 		note: 'x'
 	},
 })
