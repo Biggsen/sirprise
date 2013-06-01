@@ -45,28 +45,34 @@ var LoadPattern = function( id, options ) {
 var LoadGenerators = function( pattern, options ) {
 
 	if(pattern.isNew()) {
+
 		var generators = new SoundGenerators();
-		generators.add([{
-			name: 'Bassdrum',
-			percentage: 60,
-			type: 'Drum',
-			parent: pattern
-		},{
-			name: 'Snare',
-			percentage: 40,
-			type: 'Drum',
-			parent: pattern
-		},{
-			name: 'Hihat',
-			percentage: 80,
-			type: 'Drum',
-			parent: pattern
-		},{
-			name: 'Bass',
-			percentage: 70,
-			type: 'Bass',
-			parent: pattern
-		}]);
+		if(pattern.get("type") == 'Drum') {
+		
+			generators.add([{
+				name: 'Bassdrum',
+				percentage: 60,
+				type: 'Drum',
+				parent: pattern
+			},{
+				name: 'Snare',
+				percentage: 40,
+				type: 'Drum',
+				parent: pattern
+			},{
+				name: 'Hihat',
+				percentage: 80,
+				type: 'Drum',
+				parent: pattern
+			}]);
+		} else 	{
+			generators.add([{
+				name: 'Bass',
+				percentage: 70,
+				type: 'Bass',
+				parent: pattern
+			}]);
+		}
 		options(generators);
 		return;
 	}

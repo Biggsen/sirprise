@@ -137,22 +137,34 @@ var PatternGenrateView = Parse.View.extend({
 	el: "#content",
 
 	events: {
-		"click #generate":  "generateNew", 
+		"click #generate_drums":  "generate_drums", 
+		"click #generate_bass":  "generate_bass", 
 		"click #save":  	"save", 
 	},
 
 	initialize: function() {
 
-		_.bindAll(this, 'generateNew', 'loadModel', 'save' );
+		_.bindAll(this, 'generate_drums', 'loadModel', 'save' );
 
 		var html = tpl.get('pattern'); 
 		this.$el.html(Mustache.to_html(html, this.model.toJSON()));
 
+		if(!this.model.isNew())
+			this.loadModel();
+	},
+
+	generate_drums: function(){
+		this.model = new Pattern({
+			type: 'Drum',
+		});
 		this.loadModel();
 	},
 
-	generateNew: function(){
-		window.location.hash = "#newpattern";
+	generate_bass: function(){
+		this.model = new Pattern({
+			type: 'Bass',
+		});
+		this.loadModel();
 	},
 
 	loadModel: function() {
