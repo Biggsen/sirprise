@@ -71,14 +71,34 @@ var SoundGeneratorView = Parse.View.extend({
 	},
 
 	generate: function() {
+		
+		var nextPos; // root note in new seq
+
 		this.model.sequences.each(function (sequence) {
 
-			sequence.set("note", 
-				Generate.randomValue(
+			var perc = Math.floor((Math.random()*100)+1);
+			var odds = 	this.$el.find("#percentage").val();
+
+			if(perc <= odds) {
+
+				nextPos = Generate.scalemethod(this.$el.find("#method option:selected").text(), nextPos)
+
+				note = Generate.randomValue(
 					this.model.get("type"), 
 					this.$el.find("#percentage").val(),
-					 this.$el.find("#rootnote option:selected").text(),
-					 this.$el.find("#scale option:selected").text()))
+					this.$el.find("#rootnote option:selected").text(),
+					this.$el.find("#scale option:selected").text(), 
+					nextPos);	
+					sequence.set("note", note);
+			} else {
+				sequence.set("note", '');
+			}
+
+			
+
+			//if(note) {}
+
+			
 		}, this);
 		return false;
 	}

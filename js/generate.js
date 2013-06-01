@@ -1,21 +1,44 @@
 
 var Generate = {
 
-	randomValue: function(type, odds, rootnote, scale ) {
+	randomValue: function(type, odds, rootnote, scale, nextPos ) {
 
 		//random value from 1-100
 		var perc = Math.floor((Math.random()*100)+1);
 
 		if(type == 'Bass' || type == 'Guitar') {
-			var pos = Math.floor((Math.random()*10));
+			//var pos = Math.floor((Math.random()*10));
 			var notes = Generate.bass_sequence(rootnote, scale)
 
-			return (perc <= odds) ?  notes[pos] : '';
+			return notes[nextPos];
+
+			//return (perc <= odds) ?  notes[pos] : '';
 		} else {
-			return (perc <= odds) ? 'x' : '';
+			return 'x';
+			//return (perc <= odds) ? 'x' : '';
 		}
 	},
 
+	scalemethod: function(name, value){
+		
+		//value = -1;
+		//value = (value) ? value : Math.floor(Math.random()*10)  //get initial value
+		if(!value)
+			value = Math.floor(Math.random()*10)  //get initial value
+
+		if(name == 'one-step') {
+			var pos = Math.floor(Math.random()*3) - 1;
+		} else {
+			var pos = Math.floor(Math.random()*5) - 2;
+		}
+
+		var newvalue = value + pos;
+		if(newvalue < 0)
+			newvalue = 10 - newvalue;
+		return newvalue;
+
+		return 0;
+	},
 
 	bass_sequence: function(root, scale) {
 		//return ['F1', 'G1', 'G#1', 'A#1', 'C1', 'C#1', 'D#1', 'F2', 'G2', 'G#2']
