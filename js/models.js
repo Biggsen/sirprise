@@ -134,6 +134,9 @@ var SoundGenerator = Parse.Object.extend("SoundGenerator", {
 		name: '',
 		type: '',
 		percentage: 50,
+		rootnoot: 'E',
+		scale: 'major',
+		method: 'one-step',		
 		parent: null,
 	},
 });

@@ -76,7 +76,9 @@ var SoundGeneratorView = Parse.View.extend({
 			sequence.set("note", 
 				Generate.randomValue(
 					this.model.get("type"), 
-					this.$el.find("#percentage").val()))
+					this.$el.find("#percentage").val(),
+					 this.$el.find("#rootnote option:selected").text(),
+					 this.$el.find("#scale option:selected").text()))
 		}, this);
 		return false;
 	}
