@@ -26,51 +26,8 @@ var Patterns = Parse.Collection.extend({
 
 /* Factory method for new kits */
 
-/*var CreateDefaultDrumKit = function( ) {
-
-	var drumkit = new Drums();
-	
-	// create 3 default generators 
-	drumkit.generators = new SoundGenerators();
-	drumkit.generators.add([{
-			name: 'Bassdrum',
-			percentage: 60,
-			type: 'Drum',
-			parent: drumkit
-		},{
-			name: 'Snare',
-			percentage: 40,
-			type: 'Drum',
-			parent: drumkit
-		},{
-			name: 'Hihat',
-			percentage: 80,
-			type: 'Drum',
-			parent: drumkit
-		},{
-			name: 'Bass',
-			percentage: 70,
-			type: 'Bass',
-			parent: drumkit
-		}]
-	);
-
-	// add 8 sequences for the generators 
-	drumkit.generators.each(function ( generator ) {
-		generator.sequences = new Sequences();
-		for(var i = 0; i < 8; i++) {
-			generator.sequences.add([{
-					position: 0,
-					parent: generator
-				}]);
-		}
-	});
-
-	return drumkit;
-};
-*/
 /* Factory method to load kits */
-var LoadDrumKit = function( id, options ) {
+var LoadPattern = function( id, options ) {
 
 	if(!id) {
 		options(new Pattern());

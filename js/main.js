@@ -45,7 +45,6 @@ var SoundGeneratorView = Parse.View.extend({
 				sequence.set("note", '');
 			});
 		}
-		//this.render();
 	},
 
 	render: function() {
@@ -59,27 +58,17 @@ var SoundGeneratorView = Parse.View.extend({
 		this.$el.html(Mustache.to_html(tpl.get('generator-head'), render));
 
 		var self = this;
-		if(!this.model.sequences) {
-			LoadSequences(this.model, function ( sequences ) 
-			{
-				self.model.sequences = sequences;
-				self.model.sequences.each( function( sequence ) {
-					var view = new SequenceView({ model: sequence });
-					self.$el.append(view.render().el);
-				});	
 
-				self.$el.append(Mustache.to_html(tpl.get('generator-tail'), render));
-			});
-			
-		} else {
-			this.model.sequences.each(function (sequence) {
+		LoadSequences(this.model, function ( sequences ) 
+		{
+			self.model.sequences = sequences;
+			self.model.sequences.each( function( sequence ) {
 				var view = new SequenceView({ model: sequence });
 				self.$el.append(view.render().el);
-			});
+			});	
 
 			self.$el.append(Mustache.to_html(tpl.get('generator-tail'), render));
-		}
-
+		});
 		return this;
 	},
 
@@ -172,17 +161,16 @@ var PatternGenrateView = Parse.View.extend({
 		this.$el.find("#generators").empty();
 		var self = this;
 
-		if(!this.model.generators) {
-			LoadGenerators(this.model, function ( generators ) 
-			{
-				self.model.generators = generators;
-				self.model.generators.each( function( drum ) {
-					var view = new SoundGeneratorView({model: drum});
-					self.$el.find("#generators").append(view.render().el);
-				});	
-				return false;
-			});
-		}
+		LoadGenerators(this.model, function ( generators ) 
+		{
+			self.model.generators = generators;
+			self.model.generators.each( function( drum ) {
+				var view = new SoundGeneratorView({model: drum});
+				self.$el.find("#generators").append(view.render().el);
+			});	
+			return false;
+		});
+		
 		return false;
 	},
 
@@ -616,10 +604,10 @@ var AppRouter = Parse.Router.extend({
 			if(this.currentView) this.currentView.close();
 
 			var self = this;
-			LoadDrumKit(id, function( drumkit ) {
+			LoadPattern(id, function( pattern ) {
 				self.currentView = new PatternGenrateView(	{
 	    			el: "#content",
-	    			model: drumkit
+	    			model: pattern
 				});
 			});
 		} else {	
