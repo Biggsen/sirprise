@@ -183,11 +183,6 @@ var PatternGenrateView = Parse.View.extend({
 				return false;
 			});
 		}
-
-		this.model.generators.each( function(drum) {
-			var view = new SoundGeneratorView({model: drum});
-			self.$el.find("#generators").append(view.render().el);
-		});	
 		return false;
 	},
 
@@ -613,17 +608,7 @@ var AppRouter = Parse.Router.extend({
 	},
 
 	newpattern: function() {
-		if(Parse.User.current()) {
-			if(this.currentView) this.currentView.close();
-
-	    	this.currentView = new PatternGenrateView({
-	    		el: "#content",
-	    		model: new CreateDefaultDrumKit()
-			});
-		} else {	
-			this.login();
-		}
-		return false;
+		this.pattern(null);
 	},
 
 	pattern: function(id) {
