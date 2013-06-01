@@ -121,7 +121,7 @@ var SoundGeneratorView = Parse.View.extend({
 			var odds = this.$el.find("#percentage").val();
 
 			sequence.set("position", (perc <= odds) ? 1 : 0);
-			if(this.model.get("type") == 'Bass') {
+			if(this.model.get("type") == 'Bass' || this.model.get("type") == 'Guitar') {
 				
 				sequence.set("note", (perc <= odds) ?  this.minorscale() : '');
 			} else {
@@ -139,6 +139,7 @@ var PatternGenrateView = Parse.View.extend({
 	events: {
 		"click #generate_drums":  "generate_drums", 
 		"click #generate_bass":  "generate_bass", 
+		"click #generate_guitar":  "generate_guitar", 
 		"click #save":  	"save", 
 	},
 
@@ -163,6 +164,13 @@ var PatternGenrateView = Parse.View.extend({
 	generate_bass: function(){
 		this.model = new Pattern({
 			type: 'Bass',
+		});
+		this.loadModel();
+	},
+
+	generate_guitar: function(){
+		this.model = new Pattern({
+			type: 'Guitar',
 		});
 		this.loadModel();
 	},

@@ -65,11 +65,18 @@ var LoadGenerators = function( pattern, options ) {
 				type: 'Drum',
 				parent: pattern
 			}]);
-		} else 	{
+		} else if(pattern.get("type") == 'Bass') {
 			generators.add([{
 				name: 'Bass',
 				percentage: 70,
 				type: 'Bass',
+				parent: pattern
+			}]);
+		} else if(pattern.get("type") == 'Guitar') {
+			generators.add([{
+				name: 'Guitar',
+				percentage: 70,
+				type: 'Guitar',
 				parent: pattern
 			}]);
 		}
