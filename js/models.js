@@ -46,6 +46,11 @@ var CreateDefaultDrumKit = function( ) {
 			percentage: 80,
 			type: 'Drum',
 			parent: drumkit
+		},{
+			name: 'Bass',
+			percentage: 70,
+			type: 'Bass',
+			parent: drumkit
 		}]
 	);
 
