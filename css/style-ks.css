@@ -24,6 +24,10 @@ tbody th{
 font-family: "Arimo", arial, verdana, sans-serif;
 }
 
+td {
+	border: 1px solid #ddd;
+}
+
 button,
 a.btn,
 input[type="submit"],
